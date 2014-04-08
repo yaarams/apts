@@ -1,0 +1,35 @@
+<div class="page-header">
+    <h1>Apt List</h1>
+</div>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="#/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New Apartment</a>
+    </div>
+    <div class="col-xs-7">
+        <input type="search" class="form-control" ng-model="query" placeholder="Search for an apartment">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12"><hr></div>
+</div>
+<div class="row" ng-switch on="apts.length">
+    <ul ng-switch-when="0">
+        <li><em>No polls in databases. Would you like to <a href="#/new">create one</a>?</li>
+    </ul>
+    <ul ng-switch-default>
+        <li ng-repeat="apt in apts | filter:query">
+            <div class="well col-xs-12 center-block" style="padding-right:25px; padding-bottom:5px;padding-top:15px;">
+                <div class="col-xs-12  col-sm-3 col-md-3">
+                    <a href="#/apts/{{apt._id}}">{{apt.address}}</a>
+                    <div>{{apt.rooms}} חדרים</div>
+                    <div>{{apt.price}} שח</div>
+                </div>
+                <div>
+                    <video width="320" height="240" src="{{apt.link}}" controls />
+                    <div>{{apt.author}}</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<p>&nbsp;</p>
